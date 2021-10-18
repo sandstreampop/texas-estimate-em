@@ -19,7 +19,7 @@ interface Props {
 
 function App() {
   const [counter, setCounter] = useState<number>(0);
-
+  setCounter(counter + 1);
   return (
     <html lang="en">
       <head>
@@ -33,7 +33,7 @@ function App() {
         <title>Hello from JSX</title>
       </head>
       <body>
-        <div className="container">
+        <div id="root" className="container">
           <h1>Hello, World!</h1>
           <table className="table">
             <thead>
