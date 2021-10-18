@@ -1,9 +1,10 @@
 /// <reference path="./deploy.d.ts" />
 
-import * as React from "https://esm.sh/react@17.0.2";
+import React, {
+  createElement as h,
+  useState,
+} from "https://esm.sh/react@17.0.2";
 import * as ReactDOMServer from "https://esm.sh/react-dom@17.0.2/server";
-
-import { createElement as h } from "https://esm.sh/react@17.0.2";
 
 interface Package {
   name: string;
@@ -17,6 +18,8 @@ interface Props {
 }
 
 function App() {
+  const [counter, setCounter] = useState<number>(0);
+
   return (
     <html lang="en">
       <head>
@@ -41,9 +44,10 @@ function App() {
                 <th scope="col">URL</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>{counter}</tbody>
           </table>
         </div>
+        <button onClick={() => setCounter((count) => count + 1)}></button>
       </body>
     </html>
   );
