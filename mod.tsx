@@ -47,7 +47,7 @@ function App() {
             <tbody>{counter}</tbody>
           </table>
         </div>
-        <button onClick={() => setCounter((count) => count + 1)}></button>
+        <button onClick={() => setCounter(counter + 1)}></button>
       </body>
     </html>
   );
