@@ -4,6 +4,7 @@ import {
   React,
   ReactDOMServer,
   ReactDOM,
+  h
 } from "./deps.ts";
 
 const app = new Application();
