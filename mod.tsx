@@ -1,68 +1,36 @@
-/// <reference path="./deploy.d.ts" />
+import { Application, Router } from "https://deno.land/x/oak@v6.0.1/mod.ts";
 
-import React, {
-  createElement as h,
-  useState,
-} from "https://esm.sh/react@17.0.2";
-import * as ReactDOMServer from "https://esm.sh/react-dom@17.0.2/server";
+import { React, ReactDOMServer, ReactDOM } from "./deps.ts";
 
-interface Package {
-  name: string;
-  description: string;
-  github: string;
-  stars: number;
-}
+const app = new Application();
 
-interface Props {
-  packages: Package[];
-}
+const router = new Router();
+router.get("/", handlePage);
+
+app.use(router.routes());
+app.use(router.allowedMethods());
+
+console.log("server is running on http://localhost:8000/");
+await app.listen({ port: 8000 });
 
 function App() {
-  const [counter, setCounter] = useState<number>(0);
-  setCounter(counter + 1);
-  return (
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-          crossOrigin="anonymous"
-        />
-        <title>Hello from JSX</title>
-      </head>
-      <body>
-        <div id="root" className="container">
-          <h1>Hello, World!</h1>
-          <table className="table">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Stars</th>
-                <th scope="col">URL</th>
-              </tr>
-            </thead>
-            <tbody>{counter}</tbody>
-          </table>
-        </div>
-        <button onClick={() => setCounter(counter + 1)}></button>
-      </body>
-    </html>
-  );
+  return <h1>Hello SSR</h1>;
 }
-
-addEventListener("fetch", (event: FetchEvent) => {
-  // Render React components to a string.
-  const str = ReactDOMServer.renderToString(<App />);
-
-  // Prepend the DOCTYPE for better compatibility.
-  const body = `<!DOCTYPE html>${str}`;
-
-  const response = new Response(body, {
-    headers: { "content-type": "text/html; charset=utf-8" },
-  });
-
-  event.respondWith(response);
-});
+function handlePage(ctx: any) {
+  try {
+    const body = ReactDOMServer.renderToString(<App />);
+    ctx.response.body = `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body >
+    <div id="root">${body}</div>
+  </body>
+  </html>`;
+  } catch (error) {
+    console.error(error);
+  }
+}
