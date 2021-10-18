@@ -1,6 +1,10 @@
-import { Application, Router } from "https://deno.land/x/oak@v6.0.1/mod.ts";
-
-import { React, ReactDOMServer, ReactDOM } from "./deps.ts";
+import {
+  Application,
+  Router,
+  React,
+  ReactDOMServer,
+  ReactDOM,
+} from "./deps.ts";
 
 const app = new Application();
 
