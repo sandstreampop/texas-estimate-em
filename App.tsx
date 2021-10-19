@@ -8,6 +8,18 @@ interface Todo {
 }
 
 function App({ todos = [] }: AppProps) {
+  const [latestTodos, setLatestTodos] = React.useState<ListTodos>();
+
+  React.useEffect(() => {
+    const getTodos = async () => {
+      const fetched = await fetch("/todos");
+      const result = await fetched.json();
+      console.log(result);
+      setLatestTodos(result as ListTodos);
+    };
+    getTodos();
+  }, []);
+
   return (
     <div>
       <div className="jumbotron jumbotron-fluid">
@@ -24,7 +36,8 @@ interface ListTodos {
   items: Todo[];
 }
 function ListTodos({ items = [] }: ListTodos) {
-  const [deletedIdxs, setDeletedIdxs] = (React as any).useState([]);
+  const [deletedIdxs, setDeletedIdxs] = React.useState<Array<number>>([]);
+
   return (
     <div>
       <ul className="list-group">

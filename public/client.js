@@ -411,6 +411,16 @@ var g1 = j1((se, H)=>{
 var oe = O1(g1()), ue = O1(g1()), { Fragment: fe , StrictMode: le , Profiler: pe , Suspense: ae , Children: ye , Component: de , PureComponent: _e , __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED: ve , cloneElement: me , createContext: he , createElement: Ee , createFactory: Se , createRef: Ce , forwardRef: Re , isValidElement: ke , lazy: $e , memo: ge , useCallback: je , useContext: Oe , useDebugValue: Pe , useEffect: xe , useImperativeHandle: Ie , useLayoutEffect: we , useMemo: Ae , useReducer: Fe , useRef: Le , useState: qe , version: De  } = oe;
 var export_default1 = ue.default;
 function App({ todos =[]  }) {
+    const [latestTodos, setLatestTodos] = export_default1.useState();
+    export_default1.useEffect(()=>{
+        const getTodos = async ()=>{
+            const fetched = await fetch("/todos");
+            const result = await fetched.json();
+            console.log(result);
+            setLatestTodos(result);
+        };
+        getTodos();
+    }, []);
     return export_default1.createElement("div", null, export_default1.createElement("div", {
         className: "jumbotron jumbotron-fluid"
     }, export_default1.createElement("div", {

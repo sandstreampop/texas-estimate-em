@@ -64,7 +64,7 @@ await app.listen({ port: 8080 });
 function handlePage(ctx: any) {
   try {
     const body = ReactDOMServer.renderToString(
-      <App todos={[]} /> // change here to pass todos as props
+      <App todos={[]} />
     );
     ctx.response.body = `<!DOCTYPE html>
   <html lang="en">
