@@ -59,7 +59,6 @@ app.use(serverrouter.routes());
 
 app.use(router.allowedMethods());
 
-console.log("server is running on http://localhost:8080/");
 await app.listen({ port: 8080 });
 
 function handlePage(ctx: any) {
@@ -82,7 +81,7 @@ function handlePage(ctx: any) {
   </head>
   <body >
     <div id="root">${body}</div>
-    <script src="http://localhost:8080/static/client.js" defer></script>
+    <script src="/static/client.js" defer></script>
   </body>
   </html>`;
   } catch (error) {
