@@ -24,8 +24,8 @@ function App({ todos = [] }: AppProps) {
     <div>
       <div className="jumbotron jumbotron-fluid">
         <div className="container">
-          <h1 className="display-4">ToDo's App</h1>
-          <p className="lead">This is our simple todo app.</p>
+          <h1 className="display-4">Server side rendered React + Deno Deploy</h1>
+          <p className="lead">Try disabling JavaScript and refreshing this page! You will still be able to read this, but the list below will not be visible.</p>
           <ListTodos items={todos} />
         </div>
       </div>

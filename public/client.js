@@ -427,9 +427,9 @@ function App({ todos =[]  }) {
         className: "container"
     }, export_default1.createElement("h1", {
         className: "display-4"
-    }, "ToDo's App"), export_default1.createElement("p", {
+    }, "Server side rendered React + Deno Deploy"), export_default1.createElement("p", {
         className: "lead"
-    }, "This is our simple todo app."), export_default1.createElement(ListTodos, {
+    }, "Try disabling JavaScript and refreshing this page! You will still be able to read this, but the list below will not be visible."), export_default1.createElement(ListTodos, {
         items: todos
     }))));
 }
